@@ -11,7 +11,10 @@ require("@rails/activestorage").start()
 require("channels")
 
 document.addEventListener('turbolinks:load', () => {
-  countDown();
+  setInterval(
+    () => countDown(),
+    1000
+  );
 });
 
 import "stylesheets/application";

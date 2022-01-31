@@ -4,7 +4,7 @@
   function countDown() {
     // Get today's date and time
     let now = new Date().getTime();
-    // Find the distance between now and the count down date
+    // Find the distace between now and the count down date
     let distance = countDownDate - now;
     // Time calculations for days, hours, minutes and seconds
     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -21,4 +21,5 @@
       document.getElementById("demo").innerHTML = "L'Aléodrome est ouvert";
     }
   }
+
 export { countDown };
