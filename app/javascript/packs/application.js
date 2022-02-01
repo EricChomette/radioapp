@@ -12,10 +12,11 @@ import "stylesheets/application";
 import anime from 'animejs/lib/anime.es.js'; // cette ligne est importante pour le set up de anime.es.js
 import { countDown } from "/Users/ericchomette/code/Projet/radioV1/radioapp/app/javascript/components/countdown.js"
 import { testAnime } from '/Users/ericchomette/code/Projet/radioV1/radioapp/app/javascript/components/testanime.js'; // cette ligne est importante pour le set up de anime.es.js
+import { aleatronome } from '/Users/ericchomette/code/Projet/radioV1/radioapp/app/javascript/components/aleatronome.js'; // cette ligne est importante pour le set up de anime.es.js
 
 document.addEventListener('turbolinks:load', () => {
-
-  testAnime()
+  aleatronome();
+  testAnime();
   setInterval(
     () => countDown(),
     1000
