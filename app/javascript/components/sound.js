@@ -2,7 +2,7 @@ import anime from 'animejs/lib/anime.es.js'; // cette ligne est importante pour 
 
 function sound() {
 anime({
-  targets: 'path',
+  targets: '#soundcross',
   strokeDashoffset: function (el) {
     var pathLength = el.getTotalLength();
     el.setAttribute('stroke-dasharray', pathLength);
