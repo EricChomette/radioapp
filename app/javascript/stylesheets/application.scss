@@ -10,3 +10,17 @@ h2 {
 h3 {
   @apply text-lg;
 }
+
+.animestart {
+  height: 20px;
+  width: 20px;
+  border: solid blue;
+  background-color: blueviolet;
+}
+.groupe-anim {
+  height: 600px;
+  width: 100%;
+  margin: 10px;
+  padding: 100px;
+  border: solid brown;
+}
