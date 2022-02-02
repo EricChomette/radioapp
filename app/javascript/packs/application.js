@@ -14,12 +14,13 @@ import { aleatronome } from '/Users/ericchomette/code/Projet/radioV1/radioapp/ap
 import { sphererooling } from '/Users/ericchomette/code/Projet/radioV1/radioapp/app/javascript/components/sphere.js'; // cette ligne est importante pour le set up de anime.es.js
 
 document.addEventListener('turbolinks:load', () => {
+  sphererooling();
   aleatronome();
   setInterval(
     () => countDown(),
     1000
   );
-  sphererooling();
+
 });
 
 
