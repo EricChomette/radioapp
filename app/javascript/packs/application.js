@@ -13,6 +13,7 @@ import anime from 'animejs/lib/anime.es.js'; // cette ligne est importante pour 
 import { countDown } from "/Users/ericchomette/code/Projet/radioV1/radioapp/app/javascript/components/countdown.js"
 import { testAnime } from '/Users/ericchomette/code/Projet/radioV1/radioapp/app/javascript/components/testanime.js'; // cette ligne est importante pour le set up de anime.es.js
 import { aleatronome } from '/Users/ericchomette/code/Projet/radioV1/radioapp/app/javascript/components/aleatronome.js'; // cette ligne est importante pour le set up de anime.es.js
+import { init, sphereAnimation } from '/Users/ericchomette/code/Projet/radioV1/radioapp/app/javascript/components/sphere.js'; // cette ligne est importante pour le set up de anime.es.js
 
 document.addEventListener('turbolinks:load', () => {
   aleatronome();
