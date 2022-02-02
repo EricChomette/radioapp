@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html data-theme="retro">
+<html data-theme="cyberpunks">
+
   <head>
     <title>SetupAppRails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <style>
-    </style>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
   <%= render "components/navbar"%>
     <%= yield %>
   <%= render "components/footer"%>

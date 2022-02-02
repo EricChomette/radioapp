@@ -1,37 +1,38 @@
 import anime from 'animejs/lib/anime.es.js'; // cette ligne est importante pour le set up de anime.es.js
 
+function sphererooling () {
 function fitElementToParent(el, padding) {
-  let timeout = null;
+  var timeout = null;
   function resize() {
     if (timeout) clearTimeout(timeout);
     anime.set(el, { scale: 1 });
-    let pad = padding || 0;
-    let parentEl = el.parentNode;
-    let elOffsetWidth = el.offsetWidth - pad;
-    let parentOffsetWidth = parentEl.offsetWidth;
-    let ratio = parentOffsetWidth / elOffsetWidth;
+    var pad = padding || 0;
+    var parentEl = el.parentNode;
+    var elOffsetWidth = el.offsetWidth - pad;
+    var parentOffsetWidth = parentEl.offsetWidth;
+    var ratio = parentOffsetWidth / elOffsetWidth;
     timeout = setTimeout(anime.set(el, { scale: ratio }), 10);
   }
   resize();
   window.addEventListener('resize', resize);
 }
 
-function sphereAnimation () {
+var sphereAnimation = (function () {
 
-  let sphereEl = document.querySelector('.sphere-animation');
-  let spherePathEls = sphereEl.querySelectorAll('.sphere path');
-  let pathLength = spherePathEls.length;
-  let hasStarted = false;
-  let aimations = [];
+  var sphereEl = document.querySelector('.sphere-animation');
+  var spherePathEls = sphereEl.querySelectorAll('.sphere path');
+  var pathLength = spherePathEls.length;
+  var hasStarted = false;
+  var aimations = [];
 
   fitElementToParent(sphereEl);
 
-  let breathAnimation = anime({
+  var breathAnimation = anime({
     begin: function () {
-      for (let i = 0; i < pathLength; i++) {
+      for (var i = 0; i < pathLength; i++) {
         aimations.push(anime({
           targets: spherePathEls[i],
-          stroke: { value: ['rgba(255,255,255,1)', 'rgba(255, 62, 52,.35)'], duration: 500 },
+          stroke: { value: ['rgba(255,75,75,1)', 'rgba(80,80,80,.35)'], duration: 500 },
           translateX: [2, -4],
           translateY: [2, -4],
           easing: 'easeOutQuad',
@@ -41,7 +42,7 @@ function sphereAnimation () {
     },
     update: function (ins) {
       aimations.forEach(function (animation, i) {
-        let percent = (1 - Math.sin((i * .35) + (.0022 * ins.currentTime))) / 2;
+        var percent = (1 - Math.sin((i * .35) + (.0022 * ins.currentTime))) / 2;
         animation.seek(animation.duration * percent);
       });
     },
@@ -49,7 +50,7 @@ function sphereAnimation () {
     autoplay: false
   });
 
-  let introAnimation = anime.timeline({
+  var introAnimation = anime.timeline({
     autoplay: false
   })
     .add({
@@ -65,7 +66,7 @@ function sphereAnimation () {
       easing: 'linear'
     }, 0);
 
-  let shadowAnimation = anime({
+  var shadowAnimation = anime({
     targets: '#sphereGradient',
     x1: '25%',
     x2: '25%',
@@ -76,14 +77,15 @@ function sphereAnimation () {
     autoplay: false
   }, 0);
 
-  function initsphere() {
+  function init() {
     introAnimation.play();
     breathAnimation.play();
     shadowAnimation.play();
   }
 
-  initsphere();
+  init();
 
+})();
 };
 
-export { sphereAnimation };
+export { sphererooling }

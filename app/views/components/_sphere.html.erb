@@ -3,8 +3,9 @@
     <svg class="sphere" viewBox="0 0 440 440" stroke="rgba(80,80,80,.35)">
       <defs>
         <linearGradient id="sphereGradient" x1="5%" x2="5%" y1="0%" y2="15%">
-          <stop stop-color="#FEC0C7" offset="0%"/>
-          <stop stop-color="#1572A1" stop-opacity=".5" offset="200%"/>
+          <stop stop-color="#373734" offset="0%"/>
+          <stop stop-color="#242423" offset="50%"/>
+          <stop stop-color="#0D0D0C" offset="100%"/>
         </linearGradient>
       </defs>
       <path d="M361.604 361.238c-24.407 24.408-51.119 37.27-59.662 28.727-8.542-8.543 4.319-35.255 28.726-59.663 24.408-24.407 51.12-37.269 59.663-28.726 8.542 8.543-4.319 35.255-28.727 59.662z"/>
@@ -31,3 +32,92 @@
     </svg>
   </div>
 </div>
+<%#
+<script>
+
+  function fitElementToParent(el, padding) {
+      var timeout = null;
+      function resize() {
+          if (timeout) clearTimeout(timeout);
+          anime.set(el, {scale: 1});
+          var pad = padding || 0;
+          var parentEl = el.parentNode;
+          var elOffsetWidth = el.offsetWidth - pad;
+          var parentOffsetWidth = parentEl.offsetWidth;
+          var ratio = parentOffsetWidth / elOffsetWidth;
+          timeout = setTimeout(anime.set(el, {scale: ratio}), 10);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+  }
+
+  var sphereAnimation = (function() {
+
+      var sphereEl = document.querySelector('.sphere-animation');
+      var spherePathEls = sphereEl.querySelectorAll('.sphere path');
+      var pathLength = spherePathEls.length;
+      var hasStarted = false;
+      var aimations = [];
+
+      fitElementToParent(sphereEl);
+
+      var breathAnimation = anime({
+          begin: function() {
+              for (var i = 0; i < pathLength; i++) {
+                  aimations.push(anime({
+                      targets: spherePathEls[i],
+                      stroke: {value: ['rgba(255,75,75,1)', 'rgba(80,80,80,.35)'], duration: 500},
+                      translateX: [2, -4],
+                      translateY: [2, -4],
+                      easing: 'easeOutQuad',
+                      autoplay: false
+                  }));
+              }
+          },
+          update: function(ins) {
+              aimations.forEach(function(animation, i) {
+                  var percent = (1 - Math.sin((i * .35) + (.0022 * ins.currentTime))) / 2;
+                  animation.seek(animation.duration * percent);
+              });
+          },
+          duration: Infinity,
+          autoplay: false
+      });
+
+      var introAnimation = anime.timeline({
+          autoplay: false
+      })
+          .add({
+              targets: spherePathEls,
+              strokeDashoffset: {
+                  value: [anime.setDashoffset, 0],
+                  duration: 3900,
+                  easing: 'easeInOutCirc',
+                  delay: anime.stagger(190, {direction: 'reverse'})
+              },
+              duration: 2000,
+              delay: anime.stagger(60, {direction: 'reverse'}),
+              easing: 'linear'
+          }, 0);
+
+      var shadowAnimation = anime({
+          targets: '#sphereGradient',
+          x1: '25%',
+          x2: '25%',
+          y1: '0%',
+          y2: '75%',
+          duration: 30000,
+          easing: 'easeOutQuint',
+          autoplay: false
+      }, 0);
+
+      function init() {
+          introAnimation.play();
+          breathAnimation.play();
+          shadowAnimation.play();
+      }
+
+      init();
+
+  })();
+</script> %>
