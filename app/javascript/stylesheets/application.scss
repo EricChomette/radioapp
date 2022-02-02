@@ -1,7 +1,13 @@
 @import "~tailwindcss/tailwind";
+@import url('https://fonts.googleapis.com/css2?family=Cantarell&family=Megrim&display=swap');
+
+body {
+  font-family: 'Cantarell', sans-serif;
+}
 
 h1 {
   @apply text-2xl;
+
 }
 h2 {
   @apply text-xl;
