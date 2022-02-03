@@ -69,3 +69,11 @@ svg {
   stroke: #ff3434;
   backface-visibility: hidden;
 }
+p,
+label {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+    margin: .4rem;
+}
